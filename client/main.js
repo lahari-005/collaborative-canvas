@@ -46,7 +46,7 @@ function startApp() {
     onCursorMove: (x, y) => sendCursorToServer(x, y)
   });
 
-  const wsUrl = `ws://${window.location.host}/?room=${encodeURIComponent(room)}`;
+  const wsUrl = `wss://${window.location.host}/?room=${encodeURIComponent(room)}`;
   socket = new SocketManager(wsUrl, {
     onInit: (initMsg) => {
       canvasManager.setClientInfo(initMsg.clientId);
