@@ -1,0 +1,411 @@
+/* ===========================
+   GLOBAL DARK THEME SETTINGS
+=========================== */
+:root {
+  --bg: #0d1117;
+  --fg: #e6edf3;
+  --panel: #10131a;
+  --border: #222;
+  --canvas-bg: #ffffff; /* White drawing area */
+  --button-text: white;
+  --shadow: rgba(0, 0, 0, 0.6);
+  --accent: rgba(255, 0, 128, 0.25);
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  overflow: hidden;
+  transition: background 0.4s, color 0.4s;
+}
+
+body {
+  display: flex;
+}
+
+/* ===========================
+   SIDEBAR
+=========================== */
+.sidebar {
+  width: 240px;
+  background: var(--panel);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  box-shadow:
+    inset -2px 0 3px var(--shadow),
+    0 0 15px var(--accent),
+    0 2px 10px rgba(255, 192, 203, 0.2);
+  border-radius: 0 12px 12px 0;
+  transition: all 0.4s;
+}
+
+.sidebar h3, .sidebar h4 {
+  margin-bottom: 8px;
+  text-shadow: 0 1px 3px var(--accent);
+}
+
+/* ===========================
+   USER LIST
+=========================== */
+.userList {
+  list-style: none;
+  padding: 0;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.userItem {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  background: linear-gradient(145deg, #141820, #0d1016);
+  color: var(--fg);
+  font-weight: 500;
+  box-shadow:
+    inset 1px 1px 3px rgba(255, 255, 255, 0.05),
+    0 4px 10px rgba(255, 0, 128, 0.2),
+    0 0 10px rgba(255, 0, 128, 0.25);
+  transition: all 0.25s ease;
+}
+
+.userItem:hover {
+  background: linear-gradient(145deg, #191d26, #10141c);
+  box-shadow:
+    inset 1px 1px 3px rgba(255, 255, 255, 0.08),
+    0 6px 15px rgba(255, 0, 128, 0.35),
+    0 0 15px rgba(255, 0, 128, 0.4);
+  transform: translateY(-2px);
+}
+
+.userColor {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  box-shadow:
+    0 0 8px currentColor,
+    0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+.userItem span:last-child {
+  color: #fff;
+  letter-spacing: 0.3px;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.25);
+}
+
+/* ===========================
+   CHAT SECTION
+=========================== */
+.chat-box {
+  flex: 1;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  height: 100px;
+  overflow-y: auto;
+  padding: 6px;
+  box-shadow:
+    inset 1px 1px 4px var(--shadow),
+    0 0 8px var(--accent);
+}
+
+.chat-input {
+  display: flex;
+  gap: 4px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 6px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--fg);
+  box-shadow: inset 1px 1px 3px var(--shadow);
+}
+
+/* ===========================
+   TOOLBAR
+=========================== */
+.toolbar {
+  position: fixed;
+  top: 0;
+  left: 240px;
+  right: 0;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  border-radius: 0 0 12px 12px;
+  box-shadow:
+    0 4px 15px var(--shadow),
+    0 0 10px var(--accent);
+}
+
+.toolbar button,
+.toolbar select,
+.toolbar input[type="color"],
+.toolbar input[type="range"] {
+  margin: 4px 6px;
+}
+
+/* BUTTONS */
+.toolbar button {
+  cursor: pointer;
+  border: none;
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-weight: 500;
+  color: var(--button-text);
+  box-shadow:
+    0 3px 8px var(--shadow),
+    0 0 8px rgba(255, 0, 128, 0.2);
+  transition: all 0.25s;
+}
+
+.toolbar button:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 15px var(--shadow),
+    0 0 12px rgba(255, 0, 128, 0.4);
+}
+
+/* COLOR BUTTONS */
+.btn.blue { background: #2563eb; }
+.btn.purple { background: #8b5cf6; }
+.btn.red { background: #f87171; }
+.btn.green { background: #22c55e; }
+.btn.gray { background: #4b5563; }
+.btn.yellow { background: #fcd34d; color: black; }
+.btn.orange { background: #fb923c; }
+
+.roomLabel {
+  margin-left: auto;
+  font-size: 14px;
+  opacity: 0.9;
+  text-shadow: 0 1px 3px var(--accent);
+}
+
+/* ===========================
+   MAIN CANVAS AREA
+=========================== */
+main {
+  flex: 1;
+  position: relative;
+  background: var(--canvas-bg);
+  overflow: hidden;
+  margin-top: 55px;
+  border-radius: 12px;
+  box-shadow:
+    inset 0 0 8px var(--shadow),
+    0 0 15px var(--accent);
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+}
+
+#drawingCanvas { z-index: 1; background: white; }
+#cursorCanvas { z-index: 2; pointer-events: none; }
+
+/* ===========================
+   METRICS
+=========================== */
+.metrics {
+  font-size: 13px;
+  color: #aaa;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* ===========================
+   LOGIN OVERLAY
+=========================== */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.overlay.active { display: flex; }
+
+.login-box {
+  background: var(--panel);
+  border-radius: 12px;
+  padding: 25px 35px;
+  box-shadow:
+    0 8px 25px var(--shadow),
+    0 0 20px var(--accent),
+    inset 0 0 6px rgba(255, 0, 128, 0.1);
+  text-align: center;
+  width: 320px;
+}
+
+.login-box h2 {
+  margin-bottom: 15px;
+  color: var(--fg);
+  text-shadow: 0 1px 2px var(--accent);
+}
+
+.login-box input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: var(--bg);
+  color: var(--fg);
+  box-shadow: inset 1px 1px 3px var(--shadow);
+}
+
+.login-box button {
+  margin-top: 8px;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: 500;
+  background: #2563eb;
+  color: white;
+  box-shadow:
+    0 3px 8px var(--shadow),
+    0 0 10px var(--accent);
+  transition: all 0.25s;
+}
+
+.login-box button:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 15px var(--shadow),
+    0 0 15px var(--accent);
+}
+
+/* ===========================
+   ROOM SELECTION PAGE
+=========================== */
+.room-body {
+  background: #0d1117;
+  color: #e6edf3;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.room-container {
+  background: #10131a;
+  padding: 40px 50px;
+  border-radius: 16px;
+  box-shadow:
+    0 0 20px rgba(255, 0, 128, 0.25),
+    inset 0 0 6px rgba(255, 255, 255, 0.1);
+  text-align: center;
+  width: 340px;
+}
+
+.room-container h1 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  text-shadow: 0 1px 3px rgba(255, 0, 128, 0.6);
+}
+
+.room-container p {
+  margin-bottom: 18px;
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+.room-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.room-card {
+  background: #161b22;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.room-card:hover {
+  background: linear-gradient(145deg, #1b222c, #0d1117);
+  box-shadow:
+    0 0 10px rgba(255, 0, 128, 0.35),
+    inset 1px 1px 3px rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.custom-room {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  align-items: center;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.custom-room input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #333;
+  background: #0d1117;
+  color: #e6edf3;
+  box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.custom-room button {
+  padding: 8px 14px;
+  border-radius: 6px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.custom-room button:hover {
+  background: #1d4ed8;
+  box-shadow: 0 0 10px rgba(255, 0, 128, 0.3);
+}

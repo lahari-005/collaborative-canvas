@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Select a Room</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="room-body">
+  <div class="room-container">
+    <h1>🎨 Collaborative Canvas</h1>
+    <p>Select or create a drawing room</p>
+
+    <div class="room-grid">
+      <div class="room-card" data-room="teamA">Team A Room</div>
+      <div class="room-card" data-room="design">Design Room</div>
+      <div class="room-card" data-room="test">Test Room</div>
+      <div class="room-card custom-room">
+        <input type="text" id="customRoom" placeholder="Enter custom room..." />
+        <button id="joinRoomBtn">Join</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Join pre-made room
+    document.querySelectorAll('.room-card[data-room]').forEach(card => {
+      card.addEventListener('click', () => {
+        const room = card.dataset.room;
+        window.location.href = `login.html?room=${encodeURIComponent(room)}`;
+      });
+    });
+
+    // Join custom room
+    document.getElementById('joinRoomBtn').addEventListener('click', () => {
+      const room = document.getElementById('customRoom').value.trim();
+      if (room) {
+        window.location.href = `login.html?room=${encodeURIComponent(room)}`;
+      } else {
+        alert('Please enter a room name!');
+      }
+    });
+  </script>
+</body>
+</html>

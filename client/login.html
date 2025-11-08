@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Collaborative Canvas</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="dark">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <h3>👥 Online Users</h3>
+    <ul id="usersList" class="userList"></ul>
+
+    <h4>💬 Chat</h4>
+    <div id="chatBox" class="chat-box"></div>
+    <div class="chat-input">
+      <input id="chatInput" placeholder="Message..." />
+      <button id="chatSend">Send</button>
+    </div>
+
+    <div class="metrics" id="metrics">FPS: - • Latency: - ms</div>
+  </aside>
+
+  <!-- TOOLBAR -->
+  <div class="toolbar" role="toolbar">
+    <select id="toolSelect">
+      <option value="brush">Brush</option>
+      <option value="eraser">Eraser</option>
+      <option value="line">Line</option>
+      <option value="rect">Rect</option>
+    </select>
+    <input type="color" id="colorPicker" value="#000000"/>
+    <input id="brushSize" type="range" min="1" max="60" value="4"/>
+
+    <button class="btn blue" id="undoBtn">↺ Undo</button>
+    <button class="btn purple" id="redoBtn">↻ Redo</button>
+    <button class="btn red" id="clearBtn">✖ Clear</button>
+    <button class="btn green" id="savePNG">💾 Save PNG</button>
+    <button class="btn gray" id="saveSession">💾 Save Session</button>
+    <input id="loadSession" type="file" accept=".json" style="display:none"/>
+    <button class="btn gray" id="loadSessionBtn">📂 Load Session</button>
+    <!-- 🟢 LOGOUT BUTTON -->
+    <button id="logoutBtn" class="btn orange">🚪 Logout</button>
+
+    <div class="roomLabel">Room: <span id="roomLabel">default</span></div>
+  </div>
+
+  <!-- MAIN DRAWING AREA -->
+  <main id="mainArea">
+    <canvas id="drawingCanvas"></canvas>
+    <canvas id="cursorCanvas"></canvas>
+  </main>
+
+  <!-- LOGIN OVERLAY -->
+  <div id="loginOverlay" class="overlay active">
+    <div class="login-box">
+      <h2>Join Collaborative Canvas</h2>
+      <input id="loginName" placeholder="Your name" />
+      <input id="loginEmail" placeholder="Your email (optional)" />
+      <button id="loginBtn">Join</button>
+    </div>
+  </div>
+
+  <script type="module" src="main.js"></script>
+
+  <!-- 🔥 LOGOUT SCRIPT -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const logoutBtn = document.getElementById("logoutBtn");
+      logoutBtn.addEventListener("click", () => {
+        if (confirm("Are you sure you want to leave this room?")) {
+          // Optional: close WebSocket cleanly
+          if (window.socket && window.socket.ws) {
+            window.socket.ws.close();
+          }
+          // Redirect back to room selection
+          window.location.href = "index.html";
+        }
+      });
+    });
+  </script>
+</body>
+</html>
