@@ -42,14 +42,22 @@ To test, open in two tabs → join the same room → start drawing!
 
 📂 Structure
 client/
+
   ├── index.html
+
   ├── style.css
+  
   ├── main.js
+  
   ├── canvas.js
+  
   └── websocket.js
 server/
+  
   ├── server.js
+  
   ├── rooms.js
+  
   └── drawing-state.js
 
 ⚠️ Notes
